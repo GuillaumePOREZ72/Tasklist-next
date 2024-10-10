@@ -1,47 +1,35 @@
+import React from "react";
 import { Card, Flex, Text, Button } from "@chakra-ui/react";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 
 import { TaskProps } from "../types/index";
 
-const Task = ({
-  individualTask,
-  handleCompleteTask,
-  handleDeleteTask,
-}: TaskProps) => {
-  console.log(individualTask);
+const TaskCard = ({ individualTask, onComplete, onDelete }: TaskProps) => {
+  const { _id, completed, task: taskName } = individualTask;
+
   return (
-    <Card p="2rem" mb="0.5rem" variant="outline" key={individualTask._id}>
+    <Card p="2rem" mb="0.5rem" variant="outline" key={_id}>
       <Flex alignItems="center">
         {individualTask.completed ? (
           <Text flexGrow="1" as="del">
-            {individualTask.task}
+            {taskName}
           </Text>
         ) : (
-          <Text flexGrow="1">{individualTask.task}</Text>
+          <Text flexGrow="1">{taskName}</Text>
         )}
         <Flex>
-          {individualTask.completed ? (
-            <Button
-              ml="1rem"
-              colorScheme="whatsapp"
-              onClick={() => handleCompleteTask(individualTask._id)}
-              isDisabled
-            >
-              <CheckIcon />
-            </Button>
-          ) : (
-            <Button
-              ml="1rem"
-              colorScheme="whatsapp"
-              onClick={() => handleCompleteTask(individualTask._id)}
-            >
-              <CheckIcon />
-            </Button>
-          )}
+          <Button
+            ml="1rem"
+            colorScheme="green"
+            onClick={() => onComplete(individualTask._id)}
+            isDisabled={completed}
+          >
+            <CheckIcon />
+          </Button>
           <Button
             ml="1rem"
             colorScheme="red"
-            onClick={() => handleDeleteTask(individualTask._id)}
+            onClick={() => onDelete(individualTask._id)}
           >
             <DeleteIcon />
           </Button>
@@ -51,4 +39,4 @@ const Task = ({
   );
 };
 
-export default Task;
+export default TaskCard;

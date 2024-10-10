@@ -1,14 +1,10 @@
-import {Flex, Alert, AlertIcon } from '@chakra-ui/react'
+import { Flex, Alert, AlertIcon } from "@chakra-ui/react";
 
-const NoTasks = () => {
-  return (
-    <Flex>
-        <Alert status='warning'>
-            <AlertIcon />
-            Pas de tâche ici, ajoutez-en une !
-        </Alert>
-    </Flex>
-  )
-}
+const NoTasks = () => (
+  <Alert status="warning" flexDirection="row" alignItems="center">
+    <AlertIcon />
+    Pas de tache ici, ajoutez-en une !
+  </Alert>
+);
 
-export default NoTasks
+export default NoTasks;
